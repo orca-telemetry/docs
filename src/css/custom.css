@@ -130,3 +130,7 @@ hr {
   background-color: var(--ifm-border-color);
   margin: 2rem 0;
 }
+
+.footer {
+    background-color: var(--ifm-background-color);
+}
