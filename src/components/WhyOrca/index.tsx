@@ -44,6 +44,11 @@ export default function WhyOrca(): ReactNode {
       title: 'Iterate with Confidence',
       description: 'Orca enforces stable, versioned interfaces for all metrics. This makes every change reviewable, reproducible, and safe.',
     },
+    {
+      icon: '✅',
+      title: 'Iterate with Confidence',
+      description: 'Orca enforces stable, versioned interfaces for all metrics. This makes every change reviewable, reproducible, and safe.',
+    },
   ];
 
   return (

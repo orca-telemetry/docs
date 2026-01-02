@@ -196,7 +196,7 @@ Congratulations 🎉. You've built an end to end analytics scheduler that that w
 
 Check out more python examples in our [GitHub repo](https://github.com/Predixus/orca-python/tree/main/examples).
 
-And take a deeper look into the [Orca architecture](/docs/arch/model), including how you can access the results from your algorithms in an
+And take a deeper look into the [Orca architecture](/docs/architecture/data-model), including how you can access the results from your algorithms in an
 efficient manner - yes, Orca tracks _everything_.
 
 ---

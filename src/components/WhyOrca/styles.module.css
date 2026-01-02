@@ -1,6 +1,8 @@
+/* --- Vercel-Inspired Feature Bento Grid --- */
+
 .section {
-  padding: 5rem 2rem;
-  background: var(--ifm-background-surface-color);
+  padding: 8rem 2rem;
+  background: var(--ifm-background-color);
   border-top: 1px solid var(--ifm-border-color);
 }
 
@@ -11,105 +13,111 @@
 
 .sectionTitle {
   text-align: center;
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.06em;
   color: var(--ifm-heading-color);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .sectionSubtitle {
   text-align: center;
   font-size: 1.2rem;
-  color: var(--ifm-font-color-secondary);
-  margin-bottom: 3rem;
+  color: var(--accents-5);
+  margin-bottom: 4rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem; /* Tighter gap for a more cohesive look */
 }
 
 .card {
-  background: var(--ifm-card-background);
-  padding: 2rem;
-  border-radius: 12px;
+  background: var(--ifm-background-color);
+  padding: 2.5rem;
+  border-radius: 8px; /* Slightly sharper */
   border: 1px solid var(--ifm-border-color);
-  box-shadow: var(--ifm-global-shadow-lw);
-  transition: all 0.3s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.card::before {
+/* Subtle inner glow on hover instead of a thick side border */
+.card::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 0;
-  background: linear-gradient(to bottom, var(--brand-green) 0%, var(--brand-green-dark) 100%);
-  transition: height 0.3s ease;
+  inset: 0;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+    rgba(0, 230, 118, 0.05), 
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--ifm-global-shadow-tl);
-  border-color: var(--brand-green);
+  transform: none; /* Physical movement is avoided */
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 1px var(--ifm-color-primary), 0 12px 24px rgba(0, 0, 0, 0.04);
 }
 
-.card:hover::before {
-  height: 100%;
+.card:hover::after {
+  opacity: 1;
 }
 
 .icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--accents-3);
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: block;
 }
 
 .card:hover .icon {
-  filter: grayscale(0%) brightness(1.2);
+  color: var(--ifm-color-primary);
+  transform: scale(1.1);
 }
 
 .cardTitle {
   font-size: 1.25rem;
   font-weight: 600;
+  letter-spacing: -0.02em;
   color: var(--ifm-heading-color);
   margin-bottom: 0.75rem;
-  transition: color 0.3s ease;
-}
-
-.card:hover .cardTitle {
-  color: var(--brand-green);
 }
 
 .cardDescription {
-  color: var(--ifm-font-color-secondary);
+  font-size: 0.95rem;
+  color: var(--accents-5);
   line-height: 1.6;
   margin: 0;
 }
 
+/* Dark Mode specific refinements */
+[data-theme='dark'] .card {
+  background: #000;
+}
+
+[data-theme='dark'] .card:hover {
+  background: rgba(0, 230, 118, 0.02);
+  box-shadow: 0 0 30px rgba(0, 230, 118, 0.1);
+}
+
 @media (max-width: 768px) {
   .section {
-    padding: 3.5rem 1.5rem;
-  }
-
-  .sectionTitle {
-    font-size: 2rem;
-  }
-
-  .sectionSubtitle {
-    font-size: 1.1rem;
+    padding: 5rem 1.5rem;
   }
 
   .grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .card {
-    padding: 1.5rem;
   }
 }

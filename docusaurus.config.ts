@@ -3,7 +3,6 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
   title: 'Orca',
   tagline: 'Stream data to AI in days, not Months',
@@ -73,95 +72,67 @@ const config: Config = {
     ],
   ],
 
-  themeConfig: {
-    // Replace with your project's social card
+themeConfig: {
+    // Social card image
     image: 'img/orca-social-card.jpeg',
+    // Smooth transitions for theme switching
     colorMode: {
+      defaultMode: 'dark',
       respectPrefersColorScheme: true,
     },
     navbar: {
       title: 'Orca',
+      hideOnScroll: true, // Vercel-style: hides navbar when scrolling down
       logo: {
         alt: 'Orca Logo',
         src: 'img/logo.svg',
         srcDark: 'img/logo-dark.svg',
       },
       items: [
-        // {
-        //   type: 'localeDropdown', 
-        //   position: 'left'
-        // },
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Docs',
         },
-        // {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/orc-analytics/orca',
-            position: 'right',
-            className: 'header-github-link',
-            'aria-label': 'GitHub repository',
-          },
+        {
+          to: '/blog',
+          label: 'Blog',
+          position: 'left'
+        },
+        {
+          href: 'https://github.com/orc-analytics/orca',
+          position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
+        },
       ],
     },
+
     footer: {
-      logo: {
-        alt: 'Orca Logo',
-        src: 'img/logo.svg',
-        srcDark: 'img/logo-dark.svg',
-        href: 'https://orc-a.io',
-        width: 160,
-        height: 51,
-      },
-      style: 'dark',
+      style: 'light', // Uses our custom.css borders instead of Docusaurus's default gray
       links: [
-        // {
-        //   title: 'Docs',
-        //   items: [
-        //     {
-        //       label: 'Quickstart',
-        //       to: '/docs/quickstart',
-        //     },
-        //   ],
-        // },
-        // {
-        //   title: 'Community',
-        //   items: [
-        //     {
-        //       label: 'Slack',
-        //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-        //     },
-        //     {
-        //       label: 'Discord',
-        //       href: 'https://discordapp.com/invite/docusaurus',
-        //     },
-        //     {
-        //       label: 'X',
-        //       href: 'https://x.com/docusaurus',
-        //     },
-        //   ],
-        // },
-        // {
-        //   title: 'More',
-        //   items: [
-        //     // {
-        //     //   label: 'Blog',
-        //     //   to: '/blog',
-        //     // },
-        //     {
-        //       label: 'GitHub',
-        //       href: 'https://github.com/orc-analytics/orca',
-        //     },
-        //   ],
-        // },
+        {
+          title: 'Resources',
+          items: [
+            { label: 'Docs', to: '/docs/quickstart' },
+            { label: 'GitHub', href: 'https://github.com/orc-analytics/orca' },
+          ],
+        },
+        {
+          title: 'Legal',
+          items: [
+            { label: 'Privacy', to: '/privacy' },
+            { label: 'Terms', to: '/terms' },
+          ],
+        },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Orca.`,
+      copyright: `© ${new Date().getFullYear()} Orca.`,
     },
+
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: prismThemes.vsDark,
     },
   } satisfies Preset.ThemeConfig,
 };

@@ -1,7 +1,10 @@
+/* --- Vercel-Inspired Tech Stack Section --- */
+
 .section {
-  padding: 5rem 2rem;
-  background: var(--ifm-background-surface-color);
+  padding: 6rem 2rem;
+  background: var(--ifm-background-color); /* Switched from surface to pure bg */
   border-top: 1px solid var(--ifm-border-color);
+  position: relative;
 }
 
 .container {
@@ -9,89 +12,88 @@
   margin: 0 auto;
 }
 
+/* Technical Monospace Tag */
 .tag {
-  display: inline-block;
-  background: rgba(0, 204, 110, 0.15);
-  color: var(--brand-green-darker);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.875rem;
+  display: inline-flex;
+  background: rgba(0, 230, 118, 0.1);
+  color: var(--ifm-color-primary);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
   font-weight: 600;
+  font-family: SFMono-Regular, Consolas, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(0, 204, 110, 0.3);
-}
-
-[data-theme='dark'] .tag {
-  background: rgba(0, 204, 110, 0.12);
-  color: var(--brand-green);
-  border: 1px solid rgba(0, 204, 110, 0.25);
+  border: 1px solid rgba(0, 230, 118, 0.2);
 }
 
 .title {
-  font-size: 2.25rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
   color: var(--ifm-heading-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .description {
   font-size: 1.1rem;
-  color: var(--ifm-font-color-secondary);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  color: var(--accents-5);
+  line-height: 1.6;
+  margin-bottom: 3rem;
 }
 
+/* The Language Grid */
 .languages {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
   margin-top: 2rem;
 }
 
 .langBadge {
-  background: var(--brand-black);
-  color: var(--brand-green);
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ifm-background-color);
+  color: var(--accents-6);
+  padding: 0.75rem 1rem;
+  border-radius: 6px; /* Precise, smaller radius */
   font-weight: 500;
-  font-size: 0.9rem;
-  border: 1px solid var(--brand-green);
-  transition: all 0.3s ease;
+  font-size: 0.85rem;
+  border: 1px solid var(--ifm-border-color);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
 }
 
+/* Vercel Hover: Border becomes green, text becomes bright */
 .langBadge:hover {
-  background: var(--brand-green);
-  color: var(--brand-black);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-heading-color);
+  background: var(--ifm-background-color);
+  box-shadow: 0 0 0 1px var(--ifm-color-primary), 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
 }
 
 [data-theme='dark'] .langBadge {
-  background: rgba(0, 255, 136, 0.1);
-  color: var(--brand-green);
-  border: 1px solid rgba(0, 255, 136, 0.3);
+  background: transparent;
+  color: var(--accents-5);
+  border: 1px solid var(--accents-2);
 }
 
 [data-theme='dark'] .langBadge:hover {
-  background: var(--brand-green);
-  color: var(--brand-black);
+  background: rgba(0, 230, 118, 0.05);
+  color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 20px rgba(0, 230, 118, 0.15);
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 3.5rem 1.5rem;
+    padding: 4rem 1.5rem;
   }
-
-  .title {
-    font-size: 1.875rem;
-  }
-
-  .description {
-    font-size: 1rem;
-  }
-
-  .langBadge {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.85rem;
+  
+  .languages {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 }

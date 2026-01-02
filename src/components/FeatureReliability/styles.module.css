@@ -1,91 +1,112 @@
+/* --- Vercel-Inspired Feature Grid --- */
+
 .section {
-  padding: 5rem 2rem;
+  padding: 8rem 2rem; /* Significant whitespace for a premium feel */
   background: var(--ifm-background-color);
   border-top: 1px solid var(--ifm-border-color);
+  border-bottom: 1px solid var(--ifm-border-color);
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1000px; /* Slightly wider for the grid layout */
   margin: 0 auto;
 }
 
+/* Sharp, Technical Tag */
 .tag {
-  display: inline-block;
-  background: rgba(0, 255, 136, 0.15);
-  color: var(--brand-green-darker);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0, 230, 118, 0.1);
+  color: var(--ifm-color-primary);
+  padding: 4px 10px;
+  border-radius: 4px; /* Sharper corners */
+  font-size: 0.75rem;
   font-weight: 600;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(0, 255, 136, 0.3);
-}
-
-[data-theme='dark'] .tag {
-  background: rgba(0, 255, 136, 0.1);
-  color: var(--brand-green);
-  border: 1px solid rgba(0, 255, 136, 0.2);
+  border: 1px solid rgba(0, 230, 118, 0.2);
 }
 
 .title {
-  font-size: 2.25rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.06em; /* Tight Vercel-style tracking */
   color: var(--ifm-heading-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  line-height: 1;
 }
 
 .description {
-  font-size: 1.1rem;
-  color: var(--ifm-font-color-secondary);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  color: var(--accents-5); /* Using the gray scale from our previous step */
+  line-height: 1.6;
+  margin-bottom: 4rem;
+  max-width: 650px;
 }
 
+/* The Grid: Thin lines created by background color + gap */
 .features {
   margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1px; /* This creates the 1px internal border effect */
+  background-color: var(--ifm-border-color);
+  border: 1px solid var(--ifm-border-color);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .featureItem {
-  padding-left: 1.5rem;
-  border-left: 3px solid var(--brand-green);
-  background: var(--ifm-background-surface-color);
-  padding: 1.5rem;
-  padding-left: 1.5rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  background: var(--ifm-background-color);
+  padding: 2.5rem;
+  transition: background 0.2s ease;
+  position: relative;
 }
 
+/* Hover state: Subtle background change, no movement */
 .featureItem:hover {
-  transform: translateX(4px);
-  box-shadow: -4px 0 0 var(--brand-green), var(--ifm-global-shadow-md);
+  background: var(--accents-1); 
+}
+
+/* Surgical Green Trim: Replace the 3px border with a refined accent bar */
+.featureItem::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%; /* Hidden by default */
+  height: 2px;
+  background: var(--ifm-color-primary);
+  transition: width 0.3s ease;
+}
+
+.featureItem:hover::before {
+  width: 100%; /* Expands across the top on hover */
 }
 
 .featureTitle {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--ifm-heading-color);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
 }
 
 .featureDesc {
-  color: var(--ifm-font-color-secondary);
+  font-size: 0.95rem;
+  color: var(--accents-5);
   line-height: 1.6;
   margin: 0;
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 3.5rem 1.5rem;
+    padding: 5rem 1.5rem;
   }
 
   .title {
-    font-size: 1.875rem;
-  }
-
-  .description {
-    font-size: 1rem;
+    font-size: 2.25rem;
   }
 }

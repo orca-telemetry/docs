@@ -1,91 +1,108 @@
+/* --- Vercel-Inspired Feature List --- */
+
 .section {
-  padding: 5rem 2rem;
+  padding: 6rem 2rem;
   background: var(--ifm-background-color);
   border-top: 1px solid var(--ifm-border-color);
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1000px; /* Slightly wider for better feature spacing */
   margin: 0 auto;
 }
 
+/* Sharp, Monospaced-style Tag */
 .tag {
-  display: inline-block;
-  background: rgba(0, 184, 98, 0.15);
-  color: var(--brand-green-darker);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.875rem;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0, 230, 118, 0.1);
+  color: var(--ifm-color-primary);
+  padding: 4px 12px;
+  border-radius: 4px; /* Sharper radius */
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(0, 184, 98, 0.3);
-}
-
-[data-theme='dark'] .tag {
-  background: rgba(0, 184, 98, 0.12);
-  color: var(--brand-green);
-  border: 1px solid rgba(0, 184, 98, 0.25);
+  border: 1px solid rgba(0, 230, 118, 0.2);
 }
 
 .title {
-  font-size: 2.25rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
   color: var(--ifm-heading-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .description {
-  font-size: 1.1rem;
-  color: var(--ifm-font-color-secondary);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+  color: var(--accents-5); /* Softer secondary text */
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  max-width: 700px;
 }
 
+/* Feature Grid instead of a simple vertical list */
 .features {
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px; /* The "Vercel Grid" look: thin lines created by gap + background */
+  background-color: var(--ifm-border-color); /* The line color */
+  border: 1px solid var(--ifm-border-color);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .featureItem {
-  padding-left: 1.5rem;
-  border-left: 3px solid var(--brand-green);
-  background: var(--ifm-background-surface-color);
-  padding: 1.5rem;
-  padding-left: 1.5rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  background: var(--ifm-background-color);
+  padding: 2rem;
+  transition: background 0.2s ease;
+  height: 100%;
 }
 
 .featureItem:hover {
-  transform: translateX(4px);
-  box-shadow: -4px 0 0 var(--brand-green), var(--ifm-global-shadow-md);
+  background: var(--accents-1); /* Subtle gray hover instead of lift */
+}
+
+/* Feature Green Highlight - Modernized */
+.featureItem::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--ifm-color-primary);
+  margin-bottom: 1.5rem;
+  border-radius: 1px;
 }
 
 .featureTitle {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--ifm-heading-color);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
 }
 
 .featureDesc {
-  color: var(--ifm-font-color-secondary);
+  font-size: 0.95rem;
+  color: var(--accents-5);
   line-height: 1.6;
   margin: 0;
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 3.5rem 1.5rem;
+    padding: 4rem 1.25rem;
   }
 
+  .features {
+    grid-template-columns: 1fr;
+  }
+  
   .title {
-    font-size: 1.875rem;
-  }
-
-  .description {
-    font-size: 1rem;
+    font-size: 2rem;
   }
 }
