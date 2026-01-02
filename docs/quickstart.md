@@ -73,7 +73,7 @@ If Orca is not running, start the stack with the command `orca start`.
 Once the orca stack is running, you're ready to register your first algorithm
 using one of the SDKs:
 
-- [Python](/docs/sdks/python-sdk)
+- [Python](/docs/sdks/python)
 
 For this example we will use python, but the pattern is similar language to
 language.

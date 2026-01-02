@@ -7,3 +7,8 @@ news:
   label: News
   permalink: /news
   description: General news about Orca 
+
+open-source:
+  label: Open Source
+  permalink: /open_source
+  description: Information on advancements on the open source portion of Orca
