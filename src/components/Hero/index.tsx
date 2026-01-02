@@ -6,13 +6,13 @@ export default function Hero(): ReactNode {
     <section className={styles.hero}>
       <div className={styles.container}>
         <h1 className={styles.title}>
-          Build Analytics on Telemetry Data, <span className={styles.highlight}>Fast</span>
+            Build Analytics on Realtime Data, <span className={styles.highlight}>Fast</span>
         </h1>
         <p className={styles.subtitle}>
-          Data to AI in Days, not Months
+            With Orca, you can convert data to AI in Days, not Months.
         </p>
         <div className={styles.cta}>
-          <a href="#pricing" className={styles.primaryButton}>
+          <a href="/docs/quickstart" className={styles.primaryButton}>
             Get Started
           </a>
           <a href="#features" className={styles.secondaryButton}>

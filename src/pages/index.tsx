@@ -11,7 +11,7 @@ export default function Home(): ReactNode{
   return (
     <Layout
       title="Data to AI in Days, not Months"
-      description="Build Analytics on Telemetry Data, Fast. Orca manages the entire analytics lifecycle."
+      description="Build Analytics on Realtime Data, Fast, with Orca. Orca manages the entire analytics lifecycle from analysis scheduling to insight generation."
     >
       <main>
         <Hero />

@@ -98,11 +98,12 @@ const config: Config = {
           label: 'Docs',
         },
         // {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/orc-analytics/orca',
-          label: 'GitHub',
-          position: 'right',
-        },
+          {
+            href: 'https://github.com/orc-analytics/orca',
+            position: 'right',
+            className: 'header-github-link',
+            'aria-label': 'GitHub repository',
+          },
       ],
     },
     footer: {
