@@ -7,22 +7,23 @@ description: Get started developing with Orca.
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This guide will walk you through setting up Orca locally so you can start
-building and running custom algorithms on realtime data.
+This guide will walk you through setting up Orca locally so
+you can start building and running custom algorithms on realtime data.
 
 ---
 
-## 1 - Check docker is installed
+## 1. Check Docker is Installed
 
-Before installing the Orca CLI we need to check whether docker is installed, as the CLI uses it to spin up supporting services:
+Before installing the Orca CLI, verify that Docker is installed since
+the CLI uses it to spin up supporting services:
 
 ```bash
 docker --version
 ```
 
-If you don't have docker - install it following [these instructions](https://docs.docker.com/engine/install/).
+If you don't have Docker installed, follow [these instructions](https://docs.docker.com/engine/install/).
 
-## 2 - Install the Orca CLI
+## 2. Install the Orca CLI
 
 Run the following install script:
 
@@ -30,13 +31,17 @@ Run the following install script:
 curl -fsSL https://raw.githubusercontent.com/orc-analytics/cli/main/install-cli.sh | bash
 ```
 
-The orca CLI used to provision Orca when developing locally and manage the
-Orca lifecyle. All major platforms are supported however the this install
-script will only work on Linux, MacOS and Windows via WSL.
+The Orca CLI is used to provision Orca when developing locally and manage
+the Orca lifecycle. All major platforms are supported, though this install
+script will only work on Linux, MacOS, and Windows via WSL.
 
-Verify the installation with `orca --version`
+Verify the installation:
 
-## 2 - Start the Orca stack
+```bash
+orca --version
+```
+
+## 3. Start the Orca Stack
 
 With the CLI installed, launch the Orca stack:
 
@@ -44,7 +49,7 @@ With the CLI installed, launch the Orca stack:
 orca start
 ```
 
-This command will install necessary docker containers to get Orca running locally.
+This command installs the necessary Docker containers to get Orca running locally.
 
 Verify the Orca systems are running:
 
@@ -53,24 +58,24 @@ orca status
 ```
 
 If Orca is not running, try destroying the stack and restarting it:
+
 ```bash
 orca destroy
 orca start
 ```
 
-## 3 - Initialise a processor 
+## 4. Initialise a Processor 
 
-Once the orca stack is running, you're ready to register your first algorithm
-using one of the [SDKs](/docs/category/sdks):
+Once the Orca stack is running, you're ready to register your first algorithm.
+Orca supports multiple programming languages including Python, Go, TypeScript/JavaScript,
+and Rust. You can find the full SDK documentation at [here](/docs/category/sds).
 
-- [Python](/docs/sdks/python)
-- [Go](/docs/sdks/go)
-- [TS/JS](/docs/sdks/ts)
-- [Rust](/docs/sdks/rust)
+:::info
+Currently on the Python SDK is in a workable state. Stay up to date with SDK releases 
+by signing up to our newsletter.
+:::
 
-
-For this example we will use python, but the pattern is similar language to
-language.
+For this example, we'll use Python, but the pattern is similar across languages.
 
 Start by creating a new directory:
 
@@ -78,16 +83,15 @@ Start by creating a new directory:
 mkdir myOrcaProcessor && cd myOrcaProcessor
 ```
 
-And, within this directory run:
+Within this directory, initialise the Orca configuration:
 
 ```bash
 orca init
 ```
-This will initialise the directory with an `orca.json` configuration file. This
-configuration file contains the connection details that the processor needs to connect
-to Orca (and vice versa).
 
-Now we're going to initialise a Python project and install the Orca SDK:
+This creates an `orca.json` configuration file containing the connection details that the processor needs to connect to Orca.
+
+Now initialise a Python project and install the Orca SDK:
 
 <Tabs groupId="package-manager">
   <TabItem value="pip" label="pip" default>
@@ -115,9 +119,10 @@ touch main.py
   </TabItem>
 </Tabs>
 
-## 3 - Register a processor
+## 5. Define and Register a Processor
 
-Within the main.py file, define the processor:
+Open `main.py` and define your processor. A processor contains one or more algorithms
+that execute in response to time-based windows:
 
 ```python
 from orca_python import (
@@ -128,14 +133,13 @@ from orca_python import (
     ExecutionParams,
 )
 
-# create a processor like this - we're going to give it a name
-# that is descriptive of what this processor does
+# Create a processor with a descriptive name
 proc = Processor("ml")
 
+# Define metadata that will be passed with each window
 asset_id = MetadataField(name="asset_id", description="The unique ID of the asset.")
 
-# this window type is triggered every 30 seconds, and is carries with it
-# metadata about an asset (the asset ID)
+# Define a window type that triggers every 30 seconds
 Every30Second = WindowType(
     name="Every30Second",
     version="1.0.0",
@@ -144,19 +148,18 @@ Every30Second = WindowType(
 )
 
 
-# now define the algorithm
+# Define the algorithm that runs when the window triggers
 @proc.algorithm(name="LinearRegression", version="1.0.0", window_type=Every30Second)
 def linear_regression(params: ExecutionParams) -> StructResult:
     """
     A simple function that gets some data, performs a linear
     regression on it, and returns the fit parameters
     """
-    # retrieve the asset ID from the triggering window
+    # Retrieve the asset ID from the triggering window
     asset_id = params.window.metadata.get("asset_id", None)
     _ = asset_id
 
-    # get some data, then perform a fit - we will just stub it out,
-    # but it could look something like this:
+    # In a real implementation, you would fetch and process data:
     #   asset_data_for_window = my_data_func(
     #       params.window.time_from,
     #       params.window.time_to,
@@ -164,6 +167,7 @@ def linear_regression(params: ExecutionParams) -> StructResult:
     #   )
     #   fit_data = perform_fit(asset_data_for_window)
 
+    # For this example, we return stubbed values
     return StructResult({"m": 10, "c": -1})
 
 if __name__ == "__main__":
@@ -171,12 +175,10 @@ if __name__ == "__main__":
     proc.Start()
 ```
 
-The `proc.Register` in the main tag of the file will contact Orca and provide
-details of this processor.
+The `proc.Register()` call contacts Orca and provides details about this processor. The `proc.Start()` function then starts serving the processor, making it ready to execute algorithms when windows are emitted.
 
-The `proc.Start` function will then start serving this processor.
+Run the processor:
 
-Let's now run this processor:
 <Tabs groupId="run-processor">
   <TabItem value="pip" label="pip" default>
 ```bash
@@ -195,17 +197,17 @@ uv run main.py
   </TabItem>
 </Tabs>
 
-## 4 - Emit a Window
+Leave this running in your terminal.
 
-Now, whilst the processor runs in the background let's create a window emitter
-file. Let's create it in the same directory as our processor so that it picks
-up the connection details from `orca.json`:
+## 6. Emit a Window
+
+Now that your processor is running, you need to emit windows to trigger the algorithm execution. In a separate terminal (in the same directory), create a window emitter file:
 
 ```bash
 touch window.py
 ```
 
-We will also need the `schedule` package to emit the window on a regular cadence:
+Install the `schedule` package to emit windows on a regular cadence:
 
 <Tabs groupId="install-schedule">
   <TabItem value="pip" label="pip" default>
@@ -225,8 +227,7 @@ uv add schedule
   </TabItem>
 </Tabs>
 
-In this file we will construct an instance of our `Every30Second` window an
-emit it to Orca:
+Open `window.py` and add the following code to construct and emit `Every30Second` windows:
 
 ```python
 import time
@@ -244,7 +245,7 @@ def emitWindow() -> None:
         name="Every30Second",
         version="1.0.0",
         origin="Example",
-        metadata={"asset_id": 1}, # A dummy ID for now
+        metadata={"asset_id": 1},  # A dummy ID for now
     )
     EmitWindow(window)
 
@@ -257,7 +258,7 @@ if __name__ == "__main__":
         time.sleep(1)
 ```
 
-Then let's run it to start emitting some windows:
+Run the window emitter:
 
 <Tabs groupId="run-window-emitter">
   <TabItem value="pip" label="pip" default>
@@ -277,9 +278,12 @@ uv run window.py
   </TabItem>
 </Tabs>
 
-And let's inspect our emitter and processor logs:
+## 7. Verify It's Working
 
--- Window Emitter
+You should now see logs in both terminals showing the system in action.
+
+**Window Emitter Logs:**
+
 ```bash
 $ poetry run python window.py
 2026-01-03 22:43:04,099 - orca_python.main - INFO - Emitting window: Window(time_from=datetime.datetime(2026, 1, 3, 22, 42, 34, 99232), time_to=datetime.datetime(2026, 1, 3, 22, 43, 4, 99232), name='Every30Second', version='1.0.0', origin='Example', metadata={'asset_id': 1})
@@ -287,14 +291,9 @@ $ poetry run python window.py
 
 2026-01-03 22:43:34,130 - orca_python.main - INFO - Emitting window: Window(time_from=datetime.datetime(2026, 1, 3, 22, 43, 4, 130135), time_to=datetime.datetime(2026, 1, 3, 22, 43, 34, 130135), name='Every30Second', version='1.0.0', origin='Example', metadata={'asset_id': 1})
 2026-01-03 22:43:34,150 - orca_python.main - INFO - Window emitted: status: PROCESSING_TRIGGERED
-
-2026-01-03 22:44:04,160 - orca_python.main - INFO - Emitting window: Window(time_from=datetime.datetime(2026, 1, 3, 22, 43, 34, 160129), time_to=datetime.datetime(2026, 1, 3, 22, 44, 4, 160129), name='Every30Second', version='1.0.0', origin='Example', metadata={'asset_id': 1})
-2026-01-03 22:44:04,178 - orca_python.main - INFO - Window emitted: status: PROCESSING_TRIGGERED
 ```
 
-Great, we can see windows being emitted to Orca.
-
--- Processor
+**Processor Logs:**
 
 ```bash
 2026-01-03 22:42:57,515 - orca_python.main - INFO - Starting Orca Processor 'ml' with Python 3.13.1 (main, Feb 15 2025, 16:27:20) [GCC 13.3.0]
@@ -308,18 +307,12 @@ Great, we can see windows being emitted to Orca.
 2026-01-03 22:43:34,164 - orca_python.main - INFO - Received DAG execution request with 1 algorithms and ExecId: 173d4796523e4276bec0815cd0840459
 2026-01-03 22:43:34,164 - orca_python.main - INFO - Running algorithm LinearRegression_1.0.0
 2026-01-03 22:43:34,164 - orca_python.main - INFO - Completed algorithm: LinearRegression
-2026-01-03 22:44:04,196 - orca_python.main - INFO - Received DAG execution request with 1 algorithms and ExecId: 4c0bfa6f11a947119ab34675f57be2fd
-2026-01-03 22:44:04,196 - orca_python.main - INFO - Running algorithm LinearRegression_1.0.0
-2026-01-03 22:44:04,196 - orca_python.main - INFO - Completed algorithm: LinearRegression
 ```
-And we can see our processor is running the execution request. Congratulations, you've just
-built a production ready analytics scheduling engine 🥳.
 
-This simple example demonstrates the baseline capability of Orca to schedule analytics
-based off of simple time based triggers. But Orca can do a lot more. 
+Congratulations! You've just built a production-ready analytics scheduling engine 🥳
 
-Check these examples for more complex scenarios:
+## Next Steps
 
-- Algorithm dependency management
-- Multiple processors in the same workspace
-- Multiple cross platform processors, with dependencies between them
+This simple example demonstrates Orca's baseline capability to schedule analytics based on time-based triggers. However, Orca can do much more. 
+
+For more advanced scenarios, check out [our examples](/examples) on algorithm dependency management, running multiple processors in the same workspace, and building cross-platform processors with dependencies between them.
