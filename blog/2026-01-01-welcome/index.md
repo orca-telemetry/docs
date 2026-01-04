@@ -72,9 +72,11 @@ will remain - open source under a permissive license.
 However, building a sustainable ecosystem requires a clear path for growth. Our model 
 follows a philosophy similar to the Freemium model:
 * **The Core Framework:** Open and free for the community to build upon.
+* **Managed Platform:** We will provide a managed platform for provisioning Orca in
+    **your cloud** and scheduling deployments based on a git workflow.
 * **Specialised Modules:** We will offer paid "Toolboxes" or modules that implement 
     sophisticated, industry-specific processes and proprietary algorithms. Initial 
-    candidates are trending & forecasing toolboxes that implement industry standard models
+    candidates are trending & forecasting toolboxes that implement industry standard models
     but optimised for compute resources (so they can be run at scale) and the Orca framework
 * **Support & Services:** For enterprises that need to move fast, we provide expert 
     support and custom algorithm design.
