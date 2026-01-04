@@ -39,6 +39,8 @@ const config: Config = {
     }
   },
 
+  onBrokenAnchors:'warn',
+
   presets: [
     [
       'classic',

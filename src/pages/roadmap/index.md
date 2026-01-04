@@ -27,7 +27,7 @@ algorithms in other processors, where the processors are hosted entirely separat
 
   To aid the DX an `init` and `sync` command has been included in the CLI which will
   initialise an Orca project and then create stubbed versions of the algorithms &
-  windows types already stored within Orca. These stubbed algorithms and window types
+  window types already stored within Orca. These stubbed algorithms and window types
   can be used as usual when defining new algorithms.
 
   The `init` command is used to initialise an Orca directory, with an `orca.json`
@@ -61,7 +61,26 @@ algorithms in other processors, where the processors are hosted entirely separat
 
 ## Planned (Q2 2026)
 
-### Platform
+### Core Features
+
+**Separate Stores**
+
+Under this feature, Orca will have the ability to separate out the relational store
+where information on the algorithms, window types and how they relate are stored, 
+and the stream based data where the results are stored.
+
+This could mean that Orca stores the relational data in a MySQL database, but the
+results to the algorithms in a BigQuery instance. Best of both worlds.
+
+**Result Lookback Functions in SDKs**
+
+This feature would introduce a set of utility functions within the SDKs to lookback
+and gather results from past algorithms, filtering by window type, algorithm
+or window type metadata. This feature would introduce the ability to easily aggregate
+algorithm data within new algorithms.
+
+
+### Platform Features
 This feature introduces the Orca platform - a SaaS that provisions and monitors 
 Orca deployments on **your** infrastructure. Initially, these are the core features
 of this platform:
@@ -78,6 +97,11 @@ The platform will provide the ability to reprocess algorithms on past segments o
 time / windows. As part of this process it will provision reprocessing dedicated
 resources so as to not jeopardise production infrastructure.
 
+**Labelling**
+
+The platform will provide a data labelling interface that makes it seamless to build
+high quality labelled data sets on real-time data.
+
 ## Future / Under Consideration
 
 These items are being researched but not yet scheduled:
@@ -91,6 +115,14 @@ These items are being researched but not yet scheduled:
   This data cacheing feature would see that algorithms that use the same chunk of data
   have that chunk cached in memory for later use, and then freed once Orca has
   determined that no further algorithms depend on it.
+
+- **Failed Processor Continuation**:
+  Processors stream results to Orca as they are executed. If there is a catastrophic
+  issue when processing, Orca does have the power to log the stage that the processor
+  was at, log that it failed then flag the execution for a retry later on.
+
+  This feature could see an interface that retries the processing, and warns if the
+  upstream algorithm versions have not changed.
 
 ---
 
