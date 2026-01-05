@@ -315,4 +315,4 @@ Congratulations! You've just built a production-ready analytics scheduling engin
 
 This simple example demonstrates Orca's baseline capability to schedule analytics based on time-based triggers. However, Orca can do much more. 
 
-For more advanced scenarios, check out our examples on algorithm dependency management, running multiple processors in the same workspace, and building cross-platform processors with dependencies between them.
+For more advanced scenarios, check out our [examples](/docs/category/examples) on algorithm dependency management, running multiple processors in the same workspace, and building cross-platform processors with dependencies between them.

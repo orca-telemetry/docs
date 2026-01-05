@@ -2,7 +2,7 @@
 
 # IndexNow API submission script
 # Usage: ./indexnow.sh <url1> <url2> <url3> ...
-# Example: ./indexnow.sh "https://www.example.org/blog/new-post"
+# Example: ./indexnow.sh "https://www.orc-a.io/blog/new-post"
 
 # Configuration
 HOST="www.orc-a.io"
@@ -15,8 +15,8 @@ if [ $# -eq 0 ]; then
     echo "Usage: $0 <url1> [url2] [url3] ..."
     echo ""
     echo "Examples:"
-    echo "  $0 \"https://www.example.org/blog/new-post\""
-    echo "  $0 \"https://www.example.org/docs/quickstart\" \"https://www.example.org/docs/api\""
+    echo "  $0 \"https://www.orc-a.io/blog/new-post\""
+    echo "  $0 \"https://www.orc-a.io/docs/quickstart\" \"https://www.orc-a.io/docs/api\""
     exit 1
 fi
 
@@ -38,14 +38,17 @@ json_payload=$(cat <<EOF
 EOF
 )
 
+echo "Payload:"
+echo "$json_payload"
+echo ""
 echo "Submitting ${#URLS[@]} URL(s) to IndexNow..."
 echo ""
 
-# Submit to IndexNow API
-response=$(curl -s -w "\n%{http_code}" -X POST \
+# Submit to IndexNow API via Bing (follow redirects)
+response=$(curl -L -s -w "\n%{http_code}" -X POST \
     -H "Content-Type: application/json; charset=utf-8" \
     -d "$json_payload" \
-    "https://api.indexnow.org")
+    "https://www.bing.com/indexnow")
 
 # Parse response
 http_code=$(echo "$response" | tail -n1)
@@ -60,8 +63,15 @@ if [ "$http_code" = "200" ]; then
     for url in "${URLS[@]}"; do
         echo "  - $url"
     done
+elif [ "$http_code" = "202" ]; then
+    echo "✓ URLs accepted for processing"
+    echo ""
+    echo "Submitted:"
+    for url in "${URLS[@]}"; do
+        echo "  - $url"
+    done
 else
     echo "✗ Submission failed"
-    echo "Response: $body"
+    echo "Response body: $body"
     exit 1
 fi
