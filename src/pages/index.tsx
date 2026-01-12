@@ -7,7 +7,7 @@ import FeatureLabeling from '@site/src/components/FeatureLabelling';
 import FeatureSDK from '@site/src/components/FeatureSDK';
 import FeatureReliability from '@site/src/components/FeatureReliability';
 import CallToAction from '@site/src/components/CallToAction';
-const description = "Orca AI: Bolt-on orchestration for robotics and autonomous systems. Turn existing telemetry streams into production AI models with compile-time reliability."
+const description = "Orca AI: Bolt-on analytics for robotics and autonomous systems. Turn existing telemetry streams into production AI models with compile-time reliability."
 
 const title = "Orca - Telemetry Data to AI in Days, not Months"
 
