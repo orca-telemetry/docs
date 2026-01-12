@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 id: algo-deps
 title: Algorithm Dependencies
 description: Learn how to build a processor with algorithms that depend on each other, within a single processor. Complete example showing feature engineering and machine learning prediction with Orca's algorithm composability.
