@@ -6,37 +6,30 @@ export default function FeatureReliability(): ReactNode {
     <section className={styles.section}>
       <div className={styles.container}>
         <span className={styles.tag}>FEATURES</span>
-        <h2 className={styles.title}>Production Metrics with Unshakeable Reliability</h2>
+        <h2 className={styles.title}>Robot Fleet Reliability, Validated Before Deployment</h2>
         <p className={styles.description}>
-          Avoid cascading failures, poor backfills and stale data by handling brittle glue scripts.
-        </p>
-        <p className={styles.description}>
-          Orca orchestrates your pipelines with data freshness guarantees, including backfills
-          and retries. This ensures runtime health is enforced at compile time instead of errors
-          being thrown after deployment just monitored after the fact.
+          Robotics pipelines can't fail during production. Orca's compile-time validation guarantees your telemetry analytics are correct before deployment, with automated backfills that query your existing data stores - no brittle glue scripts required.
         </p>
         
         <div className={styles.features}>
           <div className={styles.featureItem}>
-            <h3 className={styles.featureTitle}>Event-Driven at the Core</h3>
+            <h3 className={styles.featureTitle}>Tap Into Your Existing Event Streams</h3>
             <p className={styles.featureDesc}>
-              Orca listens for your business events and triggers analysis in real-time, 
-              eliminating the gaps and collisions of cron-based schedulers.
+              Orca subscribes to your current Kafka topics or MQTT streams, triggering diagnostics the moment your robot's IMU detects anomalous vibration.
             </p>
           </div>
           
           <div className={styles.featureItem}>
-            <h3 className={styles.featureTitle}>Guaranteed Freshness</h3>
+            <h3 className={styles.featureTitle}>Freshness on Your Existing Data</h3>
             <p className={styles.featureDesc}>
-              Freshness is enforced at runtime to ensure your decisions are always based on current data.
+              Your autonomous vehicle's perception model always trains on the latest data from your existing message bus, not stale warehouse extracts.
             </p>
           </div>
           
           <div className={styles.featureItem}>
-            <h3 className={styles.featureTitle}>Automated Backfills & Retries</h3>
+            <h3 className={styles.featureTitle}>Backfill from Your Existing Stores</h3>
             <p className={styles.featureDesc}>
-              Idempotent backfills and isolated retries prevent cascading failures and ensure 
-              data consistency, even when issues occur.
+              Missed sensor data? Orca backfills automatically by querying your existing time-series database, isolating failures per robot without affecting fleet-wide operations.
             </p>
           </div>
         </div>

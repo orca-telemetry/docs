@@ -7,10 +7,10 @@ export default function Hero(): ReactNode {
     <section className={styles.hero}>
       <div className={styles.container}>
         <h1 className={styles.title}>
-            Build Analytics on Realtime Data, <span className={styles.highlight}>Fast</span>
+            Turn Existing Robot Telemetry into Production AI, <span className={styles.highlight}>Fast</span>
         </h1>
         <p className={styles.subtitle}>
-            With Orca you can build Domain Specific AI on realtime data in <b>Days</b>, not Months
+            Orca bolts onto your streaming infrastructure to orchestrate sensor-to-model pipelines in <b>Days</b>, not Months
         </p>
         <div className={styles.cta}>
           <a href="/docs/quickstart" className={styles.primaryButton}>

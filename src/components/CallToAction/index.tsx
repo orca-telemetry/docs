@@ -6,11 +6,13 @@ export default function CallToAction(): ReactNode {
     <section className={styles.section}>
       <div className={styles.container}>
         <h2 className={styles.title}>
-          Join Tier-1 teams using Orca to build domain specific AI on their realtime data.
+          Join robotics and IoT teams building AI on their telemetry infrastructure
         </h2>
-        <p className={styles.subtitle}>Start building domain specific AI on realtime data</p>
+        <p className={styles.subtitle}>
+          Bolt Orca onto your stack and start building autonomous intelligence today
+        </p>
         <a href="/docs/quickstart" className={styles.ctaButton}>
-          Get Started
+          Integrate with your datastore
         </a>
       </div>
     </section>

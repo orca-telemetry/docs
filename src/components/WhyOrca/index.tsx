@@ -33,33 +33,33 @@ export default function WhyOrca(): ReactNode {
   const features = [
     {
       icon: <Workflow size={32} strokeWidth={1.5} />,
-      title: 'No More Juggling Workflows',
-      description: 'Orca manages the entire analytics lifecycle freeing you to focus solely on algorithm development and insight generation.',
+      title: 'Stop Orchestrating Analytics by Hand',
+      description: 'Orca orchestrates AI pipelines on top of your existing telemetry streams. Your robotics team writes algorithms while Orca handles scheduling and data freshness.',
     },
     {
       icon: <Activity size={32} strokeWidth={1.5} />,
-      title: 'Timeseries Support',
-      description: 'Designed for Realtime data, Orca is a first-in-class tool for applying custom analysis on realtime data.',
+      title: 'Analytics-First Timeseries Orchestration',
+      description: 'Built for high-frequency sensor data already flowing through your infrastructure. Apply custom ML to LiDAR, IMU, and motor telemetry without touching your ingestion layer.',
     },
     {
       icon: <Code2 size={32} strokeWidth={1.5} />,
-      title: 'Developer First',
-      description: 'Lightweight and idiomatic SDKs connect your code in Python, Go, Javascript or Rust, to the control plane.',
+      title: 'Algorithm Engineer First',
+      description: 'Python and Go SDKs connect directly to your existing telemetry infrastructure. Write analysis code and Orca orchestrates execution across your fleet data without infrastructure changes.',
     },
     {
       icon: <Zap size={32} strokeWidth={1.5} />,
-      title: 'Never Miss an Event',
-      description: 'Orca is triggered by your business events as they happen. Orca enforces data freshness guarantees.',
+      title: 'Capture the 10,000th Robot Action from Your Existing Streams',
+      description: 'Event-driven triggers tap into your current telemetry store. When your robot arm enters an unmapped failure position, Orca detects it from your existing telemetry feed and launches diagnostics instantly.',
     },
     {
       icon: <GitBranch size={32} strokeWidth={1.5} />,
-      title: 'Full Lineage and Audit Ready',
-      description: 'Orca provides end-to-end lineage of your analytics and delivers clear cost attribution across all algorithms.',
+      title: 'Training Data Lineage from Ingestion to Model',
+      description: 'Full provenance across your existing data stack-from event trigger to training label.',
     },
     {
       icon: <ShieldCheck size={32} strokeWidth={1.5} />,
-      title: 'Iterate with Confidence',
-      description: 'Orca enforces stable, versioned interfaces for all metrics. This makes every change reviewable, reproducible, and safe.',
+      title: 'Reproducible Robotics Analysis on Existing Data',
+      description: 'Versioned interfaces ensure your models train on consistent sensor streams from your current data infrastructure, eliminating data drift.',
     },
   ];
 

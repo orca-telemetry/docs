@@ -1,16 +1,15 @@
 .section {
   padding: 6rem 4rem;
-  background: var(--ifm-background-color); /* Switched from surface to pure bg */
+  background: var(--ifm-background-color);
   border-top: 1px solid var(--ifm-border-color);
   position: relative;
 }
 
 .container {
-  max-width: 1000px; /* Slightly wider for better feature spacing */
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-/* Technical Monospace Tag */
 .tag {
   display: inline-flex;
   background: rgba(0, 230, 118, 0.1);
@@ -19,7 +18,7 @@
   border-radius: 4px;
   font-size: 0.7rem;
   font-weight: 600;
-  font-family: SFMono-Regular, Consolas, monospace;
+  font-family: 'SFMono-Regular', 'Consolas', monospace;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1.5rem;
@@ -41,61 +40,124 @@
   margin-bottom: 3rem;
 }
 
-/* The Language Grid */
 .languages {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
   margin-top: 2rem;
 }
 
-.langBadge {
+.languageCard {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
   background: var(--ifm-background-color);
-  color: var(--accents-6);
-  padding: 0.75rem 1rem;
-  border-radius: 6px; /* Precise, smaller radius */
-  font-weight: 500;
-  font-size: 0.85rem;
   border: 1px solid var(--ifm-border-color);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: default;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  overflow: hidden;
 }
 
-/* "High Contrast" green instead of gradients */
-.highlight {
-  color: var(--ifm-color-primary);
-  background: none;
-  -webkit-text-fill-color: initial;
-  background-clip: initial;
-}
-
-/* Border becomes green, text becomes bright */
-.langBadge:hover {
+.languageCard:hover {
   border-color: var(--ifm-color-primary);
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 0 0 1px var(--ifm-color-primary), 0 12px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+}
+
+.languageCard:hover .icon {
+  transform: scale(1.1);
+}
+
+.languageCard:hover .installCommand {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-dark) 100%);
+  color: #000;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.iconWrapper {
+  margin-bottom: 1rem;
+}
+
+.icon {
+  font-size: 3rem;
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.languageTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
   color: var(--ifm-heading-color);
-  background: var(--ifm-background-color);
-  box-shadow: 0 0 0 1px var(--ifm-color-primary), 0 8px 16px rgba(0, 0, 0, 0.1);
-  transform: translateY(-1px);
+  margin: 0 0 0.5rem 0;
+  font-family: 'SFMono-Regular', 'Consolas', monospace;
 }
 
-.noDecoration {
-    text-decoration: none;
-}
-
-[data-theme='dark'] .langBadge {
-  background: transparent;
+.languageDescription {
+  font-size: 0.875rem;
   color: var(--accents-5);
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  min-height: 2.6em;
+}
+
+.installCommand {
+  font-size: 0.75rem;
+  color: var(--ifm-color-primary);
+  background: rgba(0, 230, 118, 0.08);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: 'SFMono-Regular', 'Consolas', monospace;
+  opacity: 0.7;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(4px);
+  border: 1px solid rgba(0, 230, 118, 0.15);
+}
+
+[data-theme='dark'] .languageCard {
+  background: transparent;
   border: 1px solid var(--accents-2);
 }
 
-[data-theme='dark'] .langBadge:hover {
+[data-theme='dark'] .languageCard:hover {
   background: rgba(0, 230, 118, 0.05);
-  color: var(--ifm-color-primary);
   border-color: var(--ifm-color-primary);
-  box-shadow: 0 0 20px rgba(0, 230, 118, 0.15);
+  box-shadow: 0 0 0 1px var(--ifm-color-primary), 0 12px 24px rgba(0, 230, 118, 0.15);
+}
+
+[data-theme='dark'] .icon {
+  filter: grayscale(0.2) brightness(1.1);
+}
+
+[data-theme='light'] .languageCard {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme='light'] .languageCard:hover {
+  box-shadow: 0 0 0 1px var(--ifm-color-primary), 0 12px 24px rgba(0, 230, 118, 0.1);
+}
+
+[data-theme='light'] .installCommand {
+  background: rgba(0, 230, 118, 0.06);
 }
 
 @media (max-width: 768px) {
@@ -104,8 +166,15 @@
   }
   
   .languages {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+
+  .languageCard {
+    padding: 1.5rem;
   }
 }
-
-

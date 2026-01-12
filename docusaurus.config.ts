@@ -100,7 +100,25 @@ const config: Config = {
     ],
   ],
 
-  plugins: [],
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        fromExtensions: ['html', 'htm'], // /myPage.html -> /myPage
+        toExtensions: ['exe', 'zip'], // /myAsset -> /myAsset.zip (if latter exists)
+        redirects: [
+          {
+            from: '/docs',
+            to: '/docs/quickstart',
+          },
+          {
+            from: '/docs/sdks',
+            to: '/docs/category/sdks',
+          },
+        ],
+      },
+    ],
+  ],
 
 themeConfig: {
     // Social card image

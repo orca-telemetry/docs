@@ -1,24 +1,63 @@
-import React, { type ReactNode } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 
-export default function FeatureSDK(): ReactNode {
+export default function FeatureSDK() {
+  const languages = [
+    {
+      name: 'Python',
+      icon: '/img/python.svg',
+      description: 'For advanced ML',
+      install: 'pip install orca-python',
+      href: '',
+      popular: true
+    },
+    {
+      name: 'Go',
+      icon: '/img/go.svg',
+      description: 'For I/O bound tasks',
+      install: '<coming soon>',
+      href: '/docs/sdks/go',
+      popular: false
+    },
+    {
+      name: 'JS/TS',
+      icon: '/img/ts.svg',
+      description: 'For metrics built in JS',
+      install: '<coming soon>',
+      href: '/docs/sdks/typescript',
+      popular: false
+    },
+    {
+      name: 'Rust',
+      icon: '/img/rust.svg',
+      description: 'For high throughput metrics',
+      install: '<coming soon>',
+      href: '/docs/sdks/rust',
+      popular: false
+    }
+  ];
+
   return (
     <section className={styles.section}>
       <div className={styles.container}>
         <span className={styles.tag}>FEATURES</span>
-        <h2 className={styles.title}>Telemetry Metrics Made Easy</h2>
+        <h2 className={styles.title}>Build Algorithms in your Preferred Language</h2>
         <p className={styles.description}>
-          Orca provides a suite of developer first SDKs to deploy custom business
-          logic on realtime data. Orca connects to these SDKs to the condition of
-          cross platform DAG at compile time - speeding up algorithm development
-          and decreasing the engineering effort to take analytics to market.
+          Orca supports algorithm dependencies across programming languages so you can use the right tool for the job. Keep ML algorithms in Python and high-throughput metrics in Go!, keeping your stack efficient and lean - all without touching your ingestion layer.
         </p>
         
         <div className={styles.languages}>
-          <a href={"/docs/sdks/python"} className={styles.noDecoration}><span className={styles.langBadge}>Python</span></a>
-          <a href={"/docs/sdks/go"} className={styles.noDecoration}><span className={styles.langBadge}>Go!</span></a>
-          <a href={"/docs/sdks/typescript"} className={styles.noDecoration}><span className={styles.langBadge}>Typescript</span></a>
-          <a href={"/docs/sdks/rust"} className={styles.noDecoration}><span className={styles.langBadge}>Rust</span></a>
+          {languages.map((lang) => (
+            <a key={lang.name} href={lang.href} className={styles.languageCard}>
+              {lang.popular && <span className={styles.badge}>Popular</span>}
+              <div className={styles.iconWrapper}>
+                <img height="50"  src={lang.icon} />
+              </div>
+              <h3 className={styles.languageTitle}>{lang.name}</h3>
+              <p className={styles.languageDescription}>{lang.description}</p>
+              <code className={styles.installCommand}>{lang.install}</code>
+            </a>
+          ))}
         </div>
       </div>
     </section>
