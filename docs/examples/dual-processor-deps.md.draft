@@ -1,27 +1,34 @@
 ---
 sidebar_position: 2
 id: dual-proc-algo-deps
-title: Algorithm Dependencies Between Processors
-description: Learn how to connect algorithms between two processor runtime instances.
+title: Dependencies Between Processors
+description: Learn how to connect algorithms between two processors.
 ---
 
 ## Overview
 
 In this example we build a set of algorithms that depend on each other between
 processors. This example leverages the power of Orca to build cross runtime
-DAGs. We will use the same use case as in the [Single Processor](/docs/examples/algo-deps)
-example where we build a machine learning feature engineering pipeline.
+DAGs. We will build on top of the [Single Processor](/docs/examples/algo-deps) example
+and extend it with new metrics in a dedicated processor. So ensure you have gone
+through this example first.
 
 ## Use Case: Pump Status Detection
 
-We'll build a processor that analyses vibration data from a sensor attached to a pump to detect whether the pump is on or off. The process involves:
+In the [previous example](/docs/examples/algo-deps) we built a 
+
+We'll build a processor that analyses vibration data from a sensor attached to
+a pump to detect whether the pump is on or off. The process involves:
 
 1. **Feature Engineering**: Calculate statistical features from raw vibration data
 2. **Prediction**: Use logistic regression on these features to predict pump status
 
-By splitting these into separate algorithms, we can iterate on the regression model independently while keeping the feature engineering stable.
+By splitting these into separate algorithms, we can iterate on the regression model
+independently while keeping the feature engineering stable.
 
-The trigger to the algorithms within the processor will be a window that denotes 1 second of telemetry data. We will assume that data arrives reliably enough to produce 1 second windows where data is present.
+The trigger to the algorithms within the processor will be a window that denotes 1
+second of telemetry data. We will assume that data arrives reliably enough to
+produce 1 second windows where data is present.
 
 ## Requirements
 
@@ -38,7 +45,7 @@ This guide uses the [Python SDK](/docs/sdks/python).
 Create three files in your project:
 
 ```bash
-touch main.py
+touch processor.py
 touch data_getter.py
 touch window.py
 ```

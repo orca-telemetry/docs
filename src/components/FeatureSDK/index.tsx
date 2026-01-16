@@ -8,7 +8,7 @@ export default function FeatureSDK() {
       icon: '/img/python.svg',
       description: 'For advanced ML',
       install: 'pip install orca-python',
-      href: '',
+      href: '/docs/sdks/python',
       popular: true
     },
     {
