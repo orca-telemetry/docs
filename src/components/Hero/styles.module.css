@@ -1,12 +1,11 @@
 .hero {
-  padding: 10rem 2rem; /* Extreme whitespace for impact */
+  padding: 10rem 2rem;
   text-align: center;
   background-color: var(--ifm-background-color);
   position: relative;
-  overflow: show;
+  overflow: hidden;
 }
 
-/* "Spotlight" - centered and subtle */
 .hero::before {
   content: '';
   position: absolute;
@@ -16,18 +15,18 @@
   width: 100%;
   height: 100%;
   background: radial-gradient(
-    circle at center, 
-    rgba(0, 230, 118, 0.08) 0%, 
-    transparent 60%
+    circle at center,
+     rgba(0, 230, 118, 0.08) 0%,
+     transparent 60%
   );
   pointer-events: none;
 }
 
 [data-theme='dark'] .hero::before {
   background: radial-gradient(
-    circle at center, 
-    rgba(0, 230, 118, 0.15) 0%, 
-    transparent 50%
+    circle at center,
+     rgba(0, 230, 118, 0.15) 0%,
+     transparent 50%
   );
 }
 
@@ -39,20 +38,51 @@
 }
 
 .title {
-  font-size: 5rem; /* Massive scale */
+  font-size: 5rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
-  line-height: 0.9; /* Very tight line height */
-  letter-spacing: -0.04em; /* Aggressive Geist-style tracking */
+  line-height: 1.1;
+  letter-spacing: -0.04em;
   color: var(--ifm-heading-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
 }
 
-/* "High Contrast" green instead of gradients */
+.titleLine {
+  display: block;
+}
+
 .highlight {
   color: var(--ifm-color-primary);
   background: none;
   -webkit-text-fill-color: initial;
   background-clip: initial;
+}
+
+/* Scrolling word banner */
+.wordContainer {
+  display: block;
+  position: relative;
+  height: 1.2em;
+  overflow: hidden;
+  color: #00e676;
+  min-height: 1.2em;
+}
+
+.scrollingWord {
+  display: block;
+  animation: slideUp 0.5s cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(120%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .subtitle {
@@ -73,10 +103,9 @@
   flex-wrap: wrap;
 }
 
-/* Solid, High-Contrast Primary */
 .primaryButton {
   padding: 0.8rem 2.5rem;
-  background: var(--ifm-heading-color); /* Usually Black in light mode / White in dark */
+  background: var(--ifm-heading-color);
   color: var(--ifm-background-color);
   border: 1px solid var(--ifm-heading-color);
   border-radius: 6px;
@@ -93,7 +122,6 @@
   box-shadow: 0 0 20px rgba(0, 230, 118, 0.2);
 }
 
-/* The Green Trim Ghost Button */
 .secondaryButton {
   padding: 0.8rem 2.5rem;
   background: transparent;
@@ -112,7 +140,6 @@
   text-decoration: none;
 }
 
-/* Dark Mode Overrides for Buttons */
 [data-theme='dark'] .primaryButton {
   background: #ffffff;
   color: #000000;
@@ -125,13 +152,11 @@
 
 @media (max-width: 768px) {
   .title {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
-
   .subtitle {
     font-size: 1.1rem;
   }
-
   .hero {
     padding: 6rem 1.5rem;
   }
