@@ -56,12 +56,12 @@ const config: Config = {
         logo: 'https://orcatelemetry.io/img/logo.svg',
         description: 'Telemetry data to AI in days, not Months. Build Analytics on Realtime Data, Fast, with Orca.',
         sameAs: [
-          'https://github.com/orca-telemetry/orca',
+          'https://github.com/orca-telemetry/core',
         ],
         contactPoint: {
           '@type': 'ContactPoint',
           contactType: 'Open Source Support',
-          url: 'https://github.com/orca-telemetry/orca/issues',
+          url: 'https://github.com/orca-telemetry/core/issues',
         },
       }),
     },
@@ -169,7 +169,7 @@ themeConfig: {
         },
         {to: '/roadmap', label: 'Roadmap', position: 'left'},
         {
-          href: 'https://github.com/orca-telemetry/orca',
+          href: 'https://github.com/orca-telemetry/core',
           position: 'right',
           className: 'header-github-link',
           'aria-label': 'GitHub repository',
@@ -184,7 +184,7 @@ themeConfig: {
           title: 'Resources',
           items: [
             { label: 'Docs', to: '/docs/quickstart' },
-            { label: 'GitHub', href: 'https://github.com/orca-telemetry/orca' },
+            { label: 'GitHub', href: 'https://github.com/orca-telemetry/core' },
           ],
         },
         {
