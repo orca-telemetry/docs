@@ -32,16 +32,16 @@ export default function Pitch() {
                 <h2>Solution</h2>
                 <p>
                   Orca provides lightweight telemetry analytics orchestration framework with sensible presets that allows
-                  teams to condense opaque telemetry data to high value metrics. On top of this, Orca supplies out of the
-                  tooling to label telemetry metrics and then build high value datasets, to fine tune timeseries AI. Think
-                  automatic labelling, anomaly detection, forecasting etc.
+                  teams to condense opaque telemetry data to high value metrics. On top of this, Orca supplies out of box the
+                  tooling to label telemetry metrics and then build high value datasets, in order to finetune timeseries AI.
+                  Think anomaly detection, forecasting etc.
                 </p>
               </section>
 
               <section className={styles.section}>
                 <h2>Market</h2>
                 <p>
-                  The robotics market is growing rapidly, projected to reach $199.50B+ by 2035. Securing a small slice of
+                  The robotics market is growing rapidly, projected to reach <a href="https://finance.yahoo.com/news/robotics-market-projected-reach-us-123000827.html" target="_blank">$199.50B+ by 2035</a>. Securing a small slice of
                   in the telemetry analytics space is already a huge win. And as the engine of this market is tech. generation
                   teams (engineers, developers), building tooling that slots in to their workflow is a recipe for success
                   as the industry grows.
