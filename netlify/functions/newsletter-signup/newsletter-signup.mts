@@ -1,5 +1,4 @@
 import { Context } from '@netlify/functions'
-import crypto from 'crypto'
 
 export default async (request: Request, context: Context) => {
   // Set CORS headers
@@ -29,58 +28,70 @@ export default async (request: Request, context: Context) => {
     const { email, formtype } = body;
     
     // Validate input
-    if (!email || !formtype) {
+    if (!email) {
       return new Response(
-        JSON.stringify({ error: 'Missing required fields' }), 
+        JSON.stringify({ error: 'Email is required' }), 
         { status: 400, headers }
       );
     }
 
-    // Generate submission ID
-    const submissionId = crypto.randomUUID();
-    
-    // Prepare payload
-    const payload = JSON.stringify({ email, formtype });
-    
-    // Compute HMAC signature
-    const secret = process.env.WEBHOOK_SECRET;
-    if (!secret) {
-      console.error('WEBHOOK_SECRET not configured');
+    // Get API key
+    const apiKey = process.env.MAILER_LITE_API_KEY;
+    if (!apiKey) {
+      console.error('MAILER_LITE_API_KEY not configured');
       return new Response(
         JSON.stringify({ error: 'Server configuration error' }), 
         { status: 500, headers }
       );
     }
 
-    const hmac = crypto.createHmac('sha256', secret);
-    hmac.update(payload);
-    hmac.update(submissionId);
-    const signature = 'sha256=' + hmac.digest('hex');
+    // Prepare MailerLite payload
+    const payload: any = {
+      email: email,
+      status: 'active'
+    };
 
-    // Forward to your backend
-    const backendResponse = await fetch(
-      'https://webhooks-api-356883915714.europe-west2.run.app/handle_form_submission',
+    // Optionally add formtype as a custom field
+    if (formtype) {
+      payload.fields = {
+        formtype: formtype
+      };
+    }
+
+    // Send to MailerLite API
+    const mailerliteResponse = await fetch(
+      'https://connect.mailerlite.com/api/subscribers',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Framer-Signature': signature,
-          'framer-webhook-submission-id': submissionId
+          'Authorization': `Bearer ${apiKey}`
         },
-        body: payload
+        body: JSON.stringify(payload)
       }
     );
 
-    if (backendResponse.ok) {
+    const responseData = await mailerliteResponse.json();
+
+    if (mailerliteResponse.ok) {
+      // Success - either 200 (updated) or 201 (created)
       return new Response(
-        JSON.stringify({ success: true, message: 'Subscribed successfully' }), 
+        JSON.stringify({ 
+          success: true, 
+          message: 'Subscribed successfully',
+          data: responseData
+        }), 
         { status: 200, headers }
       );
     } else {
-      console.error('Backend error:', await backendResponse.text());
+      // Handle MailerLite errors
+      console.error('MailerLite error:', responseData);
       return new Response(
-        JSON.stringify({ error: 'Failed to subscribe' }), 
-        { status: 500, headers }
+        JSON.stringify({ 
+          error: 'Failed to subscribe',
+          details: responseData.message || 'Unknown error'
+        }), 
+        { status: mailerliteResponse.status, headers }
       );
     }
   } catch (error) {
