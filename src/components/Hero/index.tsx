@@ -17,7 +17,7 @@ export default function Hero() {
     <div className={styles.hero}>
       <div className={styles.container}>
         <h1 className={styles.title}>
-          <span className={styles.titleLine}>Turn Existing</span>
+          <span className={styles.titleLine}>The Health Layer for your</span>
           <span className={styles.wordContainer}>
             <span 
               className={styles.scrollingWord}
@@ -26,10 +26,9 @@ export default function Hero() {
               {words[currentIndex]}
             </span>
           </span>
-          <span className={styles.titleLine}>into Production AI, Fast</span>
         </h1>
         <p className={styles.subtitle}>
-          Orca bolts onto your streaming infrastructure to orchestrate sensor-to-model pipelines in Days, not Months
+          Build the fastest Telemetry Pipeline in the World
         </p>
         <div className={styles.cta}>
           <a href="/docs/quickstart" className={styles.primaryButton}>
