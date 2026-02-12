@@ -11,6 +11,8 @@ import TabItem from '@theme/TabItem';
 This guide will walk you through setting up Orca locally so
 you can start building and running custom algorithms on realtime data.
 
+The code for this example can be found [here](https://github.com/orca-telemetry/examples/quickstart).
+
 ---
 
 ## 1. Check Docker is Installed
