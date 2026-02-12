@@ -100,14 +100,14 @@ Now initialise a Python project and install the Orca SDK:
 python -m venv .venv 
 source ./.venv/bin/activate
 python -m pip install orca-python
-touch main.py
+touch processor.py
 ```
   </TabItem>
   <TabItem value="poetry" label="Poetry">
 ```bash
 poetry init
 poetry add orca-python@latest
-touch main.py
+touch processor.py
 ```
   </TabItem>
   <TabItem value="uv" label="uv">
@@ -115,14 +115,14 @@ touch main.py
 uv venv
 source .venv/bin/activate
 uv pip install orca-python
-touch main.py
+touch processor.py
 ```
   </TabItem>
 </Tabs>
 
 ## 5. Define and Register a Processor
 
-Open `main.py` and define your processor. A processor contains one or more algorithms
+Open `processor.py` and define your processor. A processor contains one or more algorithms
 that execute in response to time-based windows:
 
 ```python
@@ -183,17 +183,17 @@ Run the processor:
 <Tabs groupId="run-processor">
   <TabItem value="pip" label="pip" default>
 ```bash
-python main.py
+python processor.py
 ```
   </TabItem>
   <TabItem value="poetry" label="Poetry">
 ```bash
-poetry run python main.py
+poetry run python processor.py
 ```
   </TabItem>
   <TabItem value="uv" label="uv">
 ```bash
-uv run main.py
+uv run processor.py
 ```
   </TabItem>
 </Tabs>
