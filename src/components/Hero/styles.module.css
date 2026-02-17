@@ -1,11 +1,3 @@
-.hero {
-  padding: 10rem 2rem;
-  text-align: center;
-  background-color: var(--ifm-background-color);
-  position: relative;
-  overflow: hidden;
-}
-
 .hero::before {
   content: '';
   position: absolute;
@@ -30,13 +22,6 @@
   );
 }
 
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
 .title {
   font-size: 5rem;
   font-weight: 800;
@@ -54,14 +39,6 @@
   display: block;
 }
 
-.highlight {
-  color: var(--ifm-color-primary);
-  background: none;
-  -webkit-text-fill-color: initial;
-  background-clip: initial;
-}
-
-/* Scrolling word banner */
 .wordContainer {
   display: block;
   position: relative;
@@ -103,61 +80,12 @@
   flex-wrap: wrap;
 }
 
-.primaryButton {
-  padding: 0.8rem 2.5rem;
-  background: var(--ifm-heading-color);
-  color: var(--ifm-background-color);
-  border: 1px solid var(--ifm-heading-color);
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-}
-
-.primaryButton:hover {
-  background: transparent;
-  color: var(--ifm-heading-color);
-  text-decoration: none;
-  box-shadow: 0 0 20px rgba(0, 230, 118, 0.2);
-}
-
-.secondaryButton {
-  padding: 0.8rem 2.5rem;
-  background: transparent;
-  color: var(--accents-5);
-  border: 1px solid var(--ifm-border-color);
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-}
-
-.secondaryButton:hover {
-  border-color: var(--ifm-color-primary);
-  color: var(--ifm-color-primary);
-  text-decoration: none;
-}
-
-[data-theme='dark'] .primaryButton {
-  background: #ffffff;
-  color: #000000;
-}
-
-[data-theme='dark'] .primaryButton:hover {
-  background: var(--ifm-color-primary);
-  border-color: var(--ifm-color-primary);
-}
-
 @media (max-width: 768px) {
   .title {
     font-size: 2.5rem;
   }
+
   .subtitle {
     font-size: 1.1rem;
-  }
-  .hero {
-    padding: 6rem 1.5rem;
   }
 }

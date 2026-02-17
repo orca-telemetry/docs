@@ -144,6 +144,7 @@ themeConfig: {
     ],
     // Smooth transitions for theme switching
     colorMode: {
+      disableSwitch: true,
       defaultMode: 'dark',
       respectPrefersColorScheme: true,
     },

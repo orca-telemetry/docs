@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Section from '../ui/Section';
+import Button from '../ui/Button';
 import styles from './styles.module.css';
 
 export default function Hero() {
@@ -14,31 +16,29 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className={styles.hero}>
-      <div className={styles.container}>
-        <h1 className={styles.title}>
-          <span className={styles.titleLine}>The Health Layer for your</span>
-          <span className={styles.wordContainer}>
-            <span 
-              className={styles.scrollingWord}
-              key={currentIndex}
-            >
-              {words[currentIndex]}
-            </span>
+    <Section padding="hero" centered className={styles.hero}>
+      <h1 className={styles.title}>
+        <span className={styles.titleLine}>The Health Layer for your</span>
+        <span className={styles.wordContainer}>
+          <span
+            className={styles.scrollingWord}
+            key={currentIndex}
+          >
+            {words[currentIndex]}
           </span>
-        </h1>
-        <p className={styles.subtitle}>
-          Build the fastest Telemetry Pipeline in the World
-        </p>
-        <div className={styles.cta}>
-          <a href="/docs/quickstart" className={styles.primaryButton}>
-            Get Started
-          </a>
-          <a href="/docs/architecture/overview" className={styles.secondaryButton}>
-            Learn More
-          </a>
-        </div>
+        </span>
+      </h1>
+      <p className={styles.subtitle}>
+        Build the fastest Telemetry Pipeline in the World
+      </p>
+      <div className={styles.cta}>
+        <Button variant="primary" href="/docs/quickstart">
+          Get Started
+        </Button>
+        <Button variant="secondary" href="/docs/architecture/overview">
+          Learn More
+        </Button>
       </div>
-    </div>
+    </Section>
   );
 }

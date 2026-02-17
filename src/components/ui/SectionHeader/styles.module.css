@@ -1,0 +1,45 @@
+.title {
+  font-weight: 800;
+  color: var(--ifm-heading-color);
+  line-height: 1.1;
+}
+
+.sizeDefault {
+  font-size: 2.5rem;
+  letter-spacing: -0.05em;
+  margin-bottom: 1rem;
+}
+
+.sizeLarge {
+  font-size: 3rem;
+  letter-spacing: -0.06em;
+  margin-bottom: 1.25rem;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: var(--accents-5);
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  max-width: 650px;
+}
+
+.descriptionCentered {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.highlight {
+  color: var(--ifm-color-primary);
+}
+
+@media (max-width: 768px) {
+  .sizeDefault {
+    font-size: 2rem;
+  }
+
+  .sizeLarge {
+    font-size: 2.25rem;
+  }
+}
